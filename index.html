@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engagement Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Scheherazade+New&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Scheherazade New', serif;
+      background: linear-gradient(to bottom, #3e0a0a, #f5f0e1);
+      color: #fff8dc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }.envelope {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #800000, #3e0a0a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+
+.envelope::after {
+  content: "Tap to Open";
+  position: absolute;
+  bottom: -40px;
+  font-size: 1.2rem;
+  color: #f5deb3;
+  animation: blink 1.5s infinite;
+  font-family: 'Great Vibes', cursive;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 90%;
+  max-width: 480px;
+  height: 90%;
+  background: #f5f0e1;
+  color: #3e0a0a;
+  padding: 20px;
+  border: 5px solid #d4af37;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+  overflow-y: auto;
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  line-height: 1.8;
+  z-index: 10;
+  transition: transform 1s ease-in-out;
+  font-family: 'Scheherazade New', serif;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 15px #d4af37, 0 0 30px #d4af37, 0 0 45px rgba(212,175,55,0.6);
+  }
+  to {
+    box-shadow: 0 0 25px #ffd700, 0 0 50px #ffd700, 0 0 70px rgba(255,215,0,0.8);
+  }
+}
+
+.show-letter {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.line {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s ease;
+  font-family: 'Great Vibes', cursive;
+}
+
+.line.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2, h3, h4 {
+  color: #800000;
+  margin: 10px 0;
+  font-family: 'Great Vibes', cursive;
+}
+
+.alhamdulillah {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: bold;
+  color: #800000;
+  font-family: 'Great Vibes', cursive;
+}
+
+  </style>
+</head>
+<body>
+  <div class="envelope" id="envelope"></div>  <div class="letter" id="letter">
+    <div class="line alhamdulillah">Alhamdulillah</div>
+    <div class="line">(اللَّهُمَّ بَارِكْ لَهُمَا وَبَارِكْ عَلَيْهِمَا وَاجْمَعْ بَيْنَهُمَا فِي خَيْرٍ)</div>
+    <div class="line">Mr. & Mrs. Irfan (Late) request your presence</div>
+    <div class="line">at the engagement ceremony of their beloved Son</div>
+    <h2 class="line">✨ Muzammil ✨</h2>
+    <div class="line">S/o Muhammad Irfan (Late)</div>
+    <div class="line">with</div>
+    <h2 class="line">✨ Sabahat ✨</h2>
+    <div class="line">D/o Muhammad Jaffer (Rawala)</div>
+    <h3 class="line">📅 Sunday, 07 September 2025</h3>
+    <h3 class="line">🕣 8:30 PM</h3>
+    <h4 class="line">📍 Sarwari Ballroom</h4>
+    <div class="line">Building on Plot #3-C, 1/8, 4th Floor, Nazimabad #3,</div>
+    <div class="line">Near Karachi X-Ray, Opposite Imtiaz Store, Karachi.</div>
+    <div class="line">✨ Awaiting to welcome all  Family Members</div>
+    <div class="line">📞 Contact: 0325-3659902</div>
+  </div>  <!-- Background Music -->  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  </audio>  <script>
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+    const lines = document.querySelectorAll('.line');
+    const music = document.getElementById('bg-music');
+
+    envelope.addEventListener('click', () => {
+      envelope.style.display = 'none';
+      letter.classList.add('show-letter');
+      
+      // Play music when letter opens
+      music.play().catch(() => {
+        console.log("Autoplay blocked, user interaction needed");
+      });
+
+      lines.forEach((line, index) => {
+        setTimeout(() => {
+          line.classList.add('show');
+        }, index * 700);
+      });
+    });
+  </script></body>
+</html>
